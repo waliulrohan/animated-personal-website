@@ -43,6 +43,23 @@ const Navbar = ({ }) => {
           
         },
       };
+      const modalVariants = {
+        hidden: {
+            opacity: 0,
+            scale: 0.9,
+        },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+                duration: 0.1, // Increased duration for a smoother transition
+                type: 'spring',
+                stiffness: 150,
+                velocity: 1.5,
+            },
+        },
+    };
+    
     
       const listVariants = {
         closed: {
@@ -102,7 +119,14 @@ const Navbar = ({ }) => {
                     className="h-1 w-10 bg-black rounded-full  origin-left" 
                 />
             </motion.div>
-            {isOpen && <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-green-50  text-black font-semibold flex flex-col items-center justify-center gap-5 text-4xl z-20
+            {/* MENU MODAL */}
+            {isOpen && <div className="absolute top-0 left-0 h-[100dvh] w-screen flex items-center justify-center">
+              <motion.div
+              variants={modalVariants}
+                initial="hidden"
+                animate={isOpen ? "visible" : "hidden"}
+
+             className=" w-3/4 h-3/4 bg-green-50  text-black font-semibold flex flex-col items-center justify-center gap-5 text-4xl z-20
             bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-xl border border-white border-opacity-20 shadow-lg
             ">
                 {menuLinks.map(link => {
@@ -116,7 +140,8 @@ const Navbar = ({ }) => {
                     <Image src='/twitter.png' alt="menu" height={28} width={28}/>
                     </Link>
                 </div>
-            </div>}
+            </motion.div>
+            </div> }
         </div>
     </div>
 }
