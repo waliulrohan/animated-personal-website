@@ -1,9 +1,16 @@
+"use client"
+import {  motion } from "framer-motion"
 
 const PortfolioPage = () => {
     return (
-        <div className=''>
-             my portfolio
-        </div>
+        <motion.div
+        initial={{y:"-200vh"}}
+        animate={{y: '0%'}}
+        transition={{duration: .8}} 
+      className="h-full "
+      >
+        Portfolio
+      </motion.div>
     );
 };
 
